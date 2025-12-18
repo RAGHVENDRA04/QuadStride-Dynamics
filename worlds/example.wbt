@@ -1,0 +1,782 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/CircleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/factory/containers/protos/WoodenBox.proto"
+
+WorldInfo {
+  info [
+    "The user drives a Supervisor by the Keyboard which drives slaves robots by using an emitter device."
+  ]
+  title "Omniscience"
+  contactProperties [
+    ContactProperties {
+      coulombFriction [
+        0.7
+      ]
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.1605820205322086 0.6072646316085263 0.7781022309948444 0.6552186748520035
+  position -3.8304589724006517 -2.5483502193792105 1.8576850032260241
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+DEF circle_arena CircleArena {
+  radius 2
+}
+DEF wooden_box(1) WoodenBox {
+  translation 1.3 -0.92 0.06
+  rotation 0 0 1 4.96782
+  name "wooden box(1)"
+  size 0.1 0.1 0.1
+}
+DEF wooden_box(2) WoodenBox {
+  translation -1.5 -1 0.05
+  rotation 0 0 1 5.36782
+  name "wooden box(2)"
+  size 0.1 0.1 0.1
+}
+DEF wooden_box(3) WoodenBox {
+  translation 0.97 0.3 0.05
+  rotation 0 0 1 5.36782
+  name "wooden box(3)"
+  size 0.1 0.1 0.1
+}
+DEF wooden_box(4) WoodenBox {
+  translation -0.38 1.5 0.06
+  rotation 0 0 1 5.36782
+  name "wooden box(4)"
+  size 0.1 0.1 0.1
+}
+Robot {
+  rotation 1 0 0 1.5708
+  children [
+    Emitter {
+    }
+  ]
+  name "Driver"
+  controller "arena_supervisor"
+  supervisor TRUE
+}
+DEF GhostDog Robot {
+  translation 0.2866496818558959 0.010810263878482707 0.27900631768228956
+  rotation -0.48792038121895603 0.8479239900601018 -0.20726458614945614 0.07901625327096169
+  children [
+    DEF InertialUnit InertialUnit {
+    }
+    Group {
+    }
+    DEF BODY_SHAPE Shape {
+      appearance DEF BODY_APPEARANCE PBRAppearance {
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.3 0.2 0.1
+      }
+    }
+    DEF NECK0 HingeJoint {
+      jointParameters HingeJointParameters {
+        position -1.4706830204738177e-06
+        axis 0 -1 0
+        anchor 0.15 0 0
+      }
+      device [
+        RotationalMotor {
+          name "neck0"
+          maxVelocity 100
+          minPosition -1
+          maxPosition 1
+          maxTorque 100
+        }
+      ]
+      endPoint Solid {
+        translation 0.15556011357830013 0.0012053122154087605 -0.0025326640946017704
+        rotation 0.28108301751614273 -0.6785906993142329 0.6786066607897687 2.5935697351297327
+        children [
+          DEF NECK0_CYL_TRANS Pose {
+            children [
+              DEF NECK0_CYL_SHAPE Shape {
+                appearance DEF JOINT_APPEARANCE PBRAppearance {
+                  baseColor 1 0.7 0
+                  roughness 0.6
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.04
+                  radius 0.04
+                }
+              }
+            ]
+          }
+          DEF NECK0_BOX_TRANS Pose {
+            translation 0 -0.05 0
+            children [
+              Shape {
+                appearance USE BODY_APPEARANCE
+                geometry Box {
+                  size 0.05 0.1 0.03
+                }
+              }
+            ]
+          }
+          DEF NECK1 HingeJoint {
+            jointParameters HingeJointParameters {
+              position -2.9736476227837375e-07
+              axis 0 0 1
+              anchor 0 -0.1 0
+            }
+            device [
+              RotationalMotor {
+                name "neck1"
+                maxVelocity 100
+                minPosition -1.5708
+                maxPosition 0.6
+                maxTorque 100
+              }
+            ]
+            endPoint Solid {
+              translation 0 -0.1 0
+              rotation 0 0 1 0.785399702635232
+              children [
+                DEF NECK1_CYL_TRANS Pose {
+                  children [
+                    DEF NECK1_CYL_SHAPE Shape {
+                      appearance USE JOINT_APPEARANCE
+                      geometry Cylinder {
+                        height 0.04
+                        radius 0.04
+                      }
+                    }
+                  ]
+                }
+                DEF NECK1_BOX_TRANS Pose {
+                  translation 0 -0.04 0
+                  children [
+                    DEF NECK1_BOX_SHAPE Shape {
+                      appearance USE BODY_APPEARANCE
+                      geometry Box {
+                        size 0.05 0.08 0.03
+                      }
+                    }
+                  ]
+                }
+                DEF HEAD HingeJoint {
+                  jointParameters HingeJointParameters {
+                    position -4.7147674734547695e-08
+                    axis 0 1 0
+                    anchor 0 -0.08 0
+                  }
+                  device [
+                    RotationalMotor {
+                      name "head"
+                      minPosition -1.5708
+                      maxPosition 1.5708
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0 -0.08 0
+                    rotation 0 -1 0 5.16191365590357e-08
+                    children [
+                      DEF ps_head DistanceSensor {
+                        translation -0.1 0 0.1
+                        rotation 0 1 0 -2.3561996938995744
+                        name "ps_head"
+                      }
+                      Pose {
+                        rotation 1 0 0 1.5708
+                        children [
+                          DEF HEAD_CYL_SHAPE Shape {
+                            appearance USE JOINT_APPEARANCE
+                            geometry Cylinder {
+                              height 0.04
+                              radius 0.04
+                            }
+                          }
+                        ]
+                      }
+                      DEF HEAD_BOX_TRANS Pose {
+                        translation -0.05 -0.04 0
+                        children [
+                          DEF HEAD_SHAPE Shape {
+                            appearance USE BODY_APPEARANCE
+                            geometry Box {
+                              size 0.16 0.1 0.16
+                            }
+                          }
+                        ]
+                      }
+                      DEF LEFT_CAM Camera {
+                        translation 0 -0.09 -0.09
+                        rotation 0 -0.7071067811865476 0.7071067811865476 3.1415926535
+                        children [
+                          DEF CAM_TRANS Pose {
+                            rotation 0 1 0 1.5708
+                            children [
+                              Shape {
+                                appearance DEF CAM_APPEARANCE PBRAppearance {
+                                  baseColor 0.301961 0.301961 0.301961
+                                  roughness 0.6
+                                  metalness 0
+                                }
+                                geometry Cylinder {
+                                  height 0.04
+                                  radius 0.02
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                        name "left camera"
+                      }
+                      DEF RIGHT_CAM Camera {
+                        translation 0 -0.09 0.09
+                        rotation 0 -0.7071067811865476 0.7071067811865476 3.1415926535
+                        children [
+                          USE CAM_TRANS
+                        ]
+                        name "right camera"
+                      }
+                    ]
+                    boundingObject USE HEAD_BOX_TRANS
+                    physics Physics {
+                      density -1
+                      mass 1.28
+                      centerOfMass [
+                        0 0 0
+                      ]
+                      inertiaMatrix [
+                        0.005845 0.009045 0.008661
+                        0 -0.00256 0
+                      ]
+                    }
+                  }
+                }
+              ]
+              boundingObject USE NECK1_BOX_TRANS
+              physics Physics {
+                density -1
+                mass 0.06
+                centerOfMass [
+                  0 0 0
+                ]
+                inertiaMatrix [
+                  0.000133 0.000141 1.7e-05
+                  0 0 0
+                ]
+              }
+            }
+          }
+        ]
+        name "neck0"
+        boundingObject USE NECK0_BOX_TRANS
+        physics Physics {
+          density -1
+          mass 0.075
+          centerOfMass [
+            0 0 0
+          ]
+          inertiaMatrix [
+            0.000256 0.000266 2.1e-05
+            0 0 0
+          ]
+        }
+      }
+    }
+    DEF HIP0 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 0.029984843658524392
+        axis 0 -1 0
+        anchor 0.08 -0.12 0
+      }
+      device [
+        RotationalMotor {
+          name "hip0"
+          maxVelocity 100
+          minPosition -1.5708
+          maxPosition 1.5708
+          maxTorque 100
+        }
+      ]
+      endPoint Solid {
+        translation 0.08223416910426336 -0.12379743991492165 -0.0045938569528488115
+        rotation 0.06902771234134264 -0.9963360630745066 0.05049380502708721 0.030088773910154885
+        children [
+          DEF HIP_TRANS Pose {
+            rotation 1 0 0 1.5708
+            children [
+              DEF HIP_SHAPE Shape {
+                appearance USE JOINT_APPEARANCE
+                geometry Cylinder {
+                  height 0.04
+                  radius 0.04
+                }
+              }
+            ]
+          }
+          DEF FEMUR_TRANS Pose {
+            translation 0 0 -0.07
+            children [
+              Shape {
+                appearance USE BODY_APPEARANCE
+                geometry Box {
+                  size 0.05 0.03 0.14
+                }
+              }
+            ]
+          }
+          DEF KNEE_TRANS Pose {
+            translation 0 0 -0.14
+            rotation 1 0 0 1.5708
+            children [
+              DEF KNEE_SHAPE Shape {
+                appearance USE JOINT_APPEARANCE
+                geometry Cylinder {
+                  height 0.04
+                  radius 0.04
+                }
+              }
+            ]
+          }
+          DEF KNEE0 HingeJoint {
+            jointParameters HingeJointParameters {
+              position 2.5686214067628487e-06
+              axis 0 -1 0
+              anchor 0 0 -0.14
+            }
+            device [
+              RotationalMotor {
+                name "knee0"
+                maxVelocity 100
+                minPosition -1.5708
+                maxPosition 1.5708
+                maxTorque 100
+              }
+            ]
+            endPoint Solid {
+              translation 0 0 -0.14
+              rotation 0 -1 0 0.7000025686214023
+              children [
+                DEF KNEE0SPRING HingeJoint {
+                  jointParameters HingeJointParameters {
+                    position 0.09246621864744314
+                    axis 0 -1 0
+                    springConstant 25
+                    dampingConstant 0.1
+                  }
+                  endPoint Solid {
+                    rotation 0 -1 0 0.09246621864744248
+                    children [
+                      DEF TIBIA_TRANS Pose {
+                        translation 0 0 -0.07
+                        children [
+                          Shape {
+                            appearance USE BODY_APPEARANCE
+                            geometry Box {
+                              size 0.05 0.03 0.14
+                            }
+                          }
+                        ]
+                      }
+                      DEF TOUCH0 TouchSensor {
+                        translation 3.175063752303142e-05 1.295939152518022e-07 -0.14003475767471688
+                        rotation 0.9999999999998763 7.150557516547515e-08 -4.920981012918175e-07 1.570800318518691
+                        children [
+                          DistanceSensor {
+                            rotation 0 0 1 -0.7853996938995746
+                            name "ps_fr"
+                          }
+                          DEF FOOT_SHAPE Shape {
+                            appearance DEF FOOT_APPEARANCE PBRAppearance {
+                              baseColor 1 0 0
+                              roughness 0.6
+                              metalness 0
+                            }
+                            geometry Cylinder {
+                              height 0.04
+                              radius 0.04
+                            }
+                          }
+                        ]
+                        name "touch0"
+                        boundingObject USE FOOT_SHAPE
+                        physics DEF FOOT_PHYSICS Physics {
+                          density -1
+                          mass 0.01
+                        }
+                        type "force"
+                        lookupTable [
+                          0 0 0
+                          100 1000 0
+                        ]
+                      }
+                    ]
+                    boundingObject DEF DUMMY_BOX Box {
+                      size 0.01 0.01 0.01
+                    }
+                    physics DEF TIBIA_PHYSICS Physics {
+                      density -1
+                      mass 0.2
+                    }
+                  }
+                }
+              ]
+              boundingObject Box {
+                size 0.001 0.001 0.001
+              }
+              physics USE FOOT_PHYSICS
+            }
+          }
+        ]
+        name "hip0"
+        boundingObject USE KNEE_TRANS
+        physics DEF FEMUR_PHYSICS Physics {
+          density -1
+          mass 0.201062
+          centerOfMass [
+            0 0 -0.07
+          ]
+          inertiaMatrix [
+            0.001092 0.001146 0.000107
+            0 0 0
+          ]
+        }
+      }
+    }
+    DEF HIP2 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 0.0899578240002532
+        axis 0 -1 0
+        anchor 0.08 0.12 0
+      }
+      device [
+        RotationalMotor {
+          name "hip2"
+          maxVelocity 100
+          minPosition -1.5708
+          maxPosition 1.5708
+          maxTorque 100
+        }
+      ]
+      endPoint Solid {
+        translation 0.0849111134483324 0.12612544676215687 -0.013545360084921073
+        rotation 0.14157116356208438 -0.9890721130961243 0.04115775435133506 0.09091420553568395
+        children [
+          USE HIP_TRANS
+          USE FEMUR_TRANS
+          USE KNEE_TRANS
+          DEF KNEE2 HingeJoint {
+            jointParameters HingeJointParameters {
+              position 2.778138199957409e-06
+              axis 0 -1 0
+              anchor 0 0 -0.14
+            }
+            device [
+              RotationalMotor {
+                name "knee2"
+                maxVelocity 100
+                minPosition -1.5708
+                maxPosition 1.5708
+                maxTorque 100
+              }
+            ]
+            endPoint Solid {
+              translation 0 0 -0.14
+              rotation 0 -0.9999999999999999 0 0.7000027781381917
+              children [
+                DEF KNEE2SPRING HingeJoint {
+                  jointParameters HingeJointParameters {
+                    position 0.13137558357691256
+                    axis 0 -1 0
+                    springConstant 25
+                    dampingConstant 0.1
+                  }
+                  endPoint Solid {
+                    rotation 0 -1 0 0.13137558357691323
+                    children [
+                      USE TIBIA_TRANS
+                      DEF TOUCH2 TouchSensor {
+                        translation 2.6734380567161597e-05 -1.715990538952994e-05 -0.14024061164971036
+                        rotation 0.9999999999999849 -2.815958147905173e-08 1.704292313398585e-07 1.570799947502422
+                        children [
+                          DEF ps_fl DistanceSensor {
+                            rotation 0 -0.7071092812114067 0.7071042811528492 2.6179956132800117
+                            name "ps_fl"
+                          }
+                          USE FOOT_SHAPE
+                        ]
+                        name "touch2"
+                        boundingObject USE FOOT_SHAPE
+                        physics USE FOOT_PHYSICS
+                        type "force"
+                        lookupTable [
+                          0 0 0
+                          100 1000 0
+                        ]
+                      }
+                    ]
+                    boundingObject USE DUMMY_BOX
+                    physics USE TIBIA_PHYSICS
+                  }
+                }
+              ]
+              boundingObject Box {
+                size 0.001 0.001 0.001
+              }
+              physics USE FOOT_PHYSICS
+            }
+          }
+        ]
+        name "hip2"
+        boundingObject USE KNEE_TRANS
+        physics USE FEMUR_PHYSICS
+      }
+    }
+    DEF PELVIS HingeJoint {
+      jointParameters HingeJointParameters {
+        position 0.040001711217875394
+        axis 0 0 1
+        anchor -0.18 0 0
+      }
+      device [
+        RotationalMotor {
+          name "spine"
+          maxVelocity 100
+          minPosition -0.6
+          maxPosition 0.6
+          maxTorque 100
+        }
+      ]
+      endPoint Solid {
+        translation -0.19187084494518217 -0.0005414043399215474 0.0016262669232032262
+        rotation -3.0890654272515944e-05 0.0009199477493206887 0.9999995763708632 0.03997449096801293
+        children [
+          DEF PELVIS_CYL_SHAPE Shape {
+            appearance USE JOINT_APPEARANCE
+            geometry Cylinder {
+              height 0.11
+              radius 0.06
+            }
+          }
+          DEF PELVIS_BOX_SHAPE Pose {
+            translation -0.13 0 0
+            children [
+              Shape {
+                appearance USE BODY_APPEARANCE
+                geometry Box {
+                  size 0.2 0.2 0.1
+                }
+              }
+            ]
+          }
+          DEF HIP1 HingeJoint {
+            jointParameters HingeJointParameters {
+              position -0.06998397205826534
+              axis 0 -1 0
+              anchor -0.16 -0.12 0
+            }
+            device [
+              RotationalMotor {
+                name "hip1"
+                maxVelocity 100
+                minPosition -1.5708
+                maxPosition 1.5708
+                maxTorque 100
+              }
+            ]
+            endPoint Solid {
+              translation -0.16 -0.12 0
+              rotation 0 1 0 0.06998397205826307
+              children [
+                USE HIP_TRANS
+                USE FEMUR_TRANS
+                USE KNEE_TRANS
+                DEF KNEE1 HingeJoint {
+                  jointParameters HingeJointParameters {
+                    position -3.3446108527264594e-07
+                    axis 0 -1 0
+                    anchor 0 0 -0.14
+                  }
+                  device [
+                    RotationalMotor {
+                      name "knee1"
+                      maxVelocity 100
+                      minPosition -1.5708
+                      maxPosition 1.5708
+                      maxTorque 100
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0 0 -0.14
+                    rotation 0 -1 0 0.6999996655389052
+                    children [
+                      DEF KNEE1SPRING HingeJoint {
+                        jointParameters HingeJointParameters {
+                          position -0.00018089390892761514
+                          axis 0 -1 0
+                          springConstant 25
+                          dampingConstant 0.1
+                        }
+                        endPoint Solid {
+                          rotation 0 1 0 0.00018089390808018042
+                          children [
+                            USE TIBIA_TRANS
+                            DEF TOUCH1 TouchSensor {
+                              translation 1.592982540294871e-05 2.0395352277463585e-05 -0.14026519961825115
+                              rotation 0.9999999999999989 2.9189459751012073e-09 4.608738260990068e-08 1.5707999938900072
+                              children [
+                                DEF ps_br DistanceSensor {
+                                  rotation 0 0 1 -0.7853996938995746
+                                  name "ps_br"
+                                }
+                                USE FOOT_SHAPE
+                              ]
+                              name "touch1"
+                              boundingObject USE FOOT_SHAPE
+                              physics USE FOOT_PHYSICS
+                              type "force"
+                              lookupTable [
+                                0 0 0
+                                100 1000 0
+                              ]
+                            }
+                          ]
+                          boundingObject USE DUMMY_BOX
+                          physics USE TIBIA_PHYSICS
+                        }
+                      }
+                    ]
+                    boundingObject Box {
+                      size 0.001 0.001 0.001
+                    }
+                    physics USE FOOT_PHYSICS
+                  }
+                }
+              ]
+              name "hip1"
+              boundingObject USE KNEE_TRANS
+              physics USE FEMUR_PHYSICS
+            }
+          }
+          DEF HIP3 HingeJoint {
+            jointParameters HingeJointParameters {
+              position -0.20996425872936486
+              axis 0 -1 0
+              anchor -0.16 0.12 0
+            }
+            device [
+              RotationalMotor {
+                name "hip3"
+                maxVelocity 100
+                minPosition -1.5708
+                maxPosition 1.5708
+                maxTorque 100
+              }
+            ]
+            endPoint Solid {
+              translation -0.16 0.12 0
+              rotation 0 1 0 0.20996425872936542
+              children [
+                USE HIP_TRANS
+                USE FEMUR_TRANS
+                USE KNEE_TRANS
+                DEF KNEE3 HingeJoint {
+                  jointParameters HingeJointParameters {
+                    position 1.6693905827104218e-06
+                    axis 0 -1 0
+                    anchor 0 0 -0.14
+                  }
+                  device [
+                    RotationalMotor {
+                      name "knee3"
+                      maxVelocity 100
+                      minPosition -1.5708
+                      maxPosition 1.5708
+                      maxTorque 100
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0 0 -0.14
+                    rotation 0 -1 0 0.7000016693905692
+                    children [
+                      DEF KNEE3SPRING HingeJoint {
+                        jointParameters HingeJointParameters {
+                          position 0.02588639638392995
+                          axis 0 -1 0
+                          springConstant 25
+                          dampingConstant 0.1
+                        }
+                        endPoint Solid {
+                          rotation 0 -1 0 0.025886396383927913
+                          children [
+                            DEF ps_bl DistanceSensor {
+                              translation -0.02 0 0
+                              rotation 0 0 1 1.4398956132800116
+                              name "ps_bl"
+                            }
+                            USE TIBIA_TRANS
+                            DEF TOUCH3 TouchSensor {
+                              translation 1.8880521649847215e-05 1.7302886068465417e-05 -0.14070804980617582
+                              rotation 0.9999999999999902 1.0910196092391788e-07 -8.808513909376819e-08 1.5707999542351487
+                              children [
+                                USE FOOT_SHAPE
+                              ]
+                              name "touch3"
+                              boundingObject USE FOOT_SHAPE
+                              physics USE FOOT_PHYSICS
+                              type "force"
+                              lookupTable [
+                                0 0 0
+                                100 1000 0
+                              ]
+                            }
+                          ]
+                          boundingObject USE DUMMY_BOX
+                          physics USE TIBIA_PHYSICS
+                        }
+                      }
+                    ]
+                    boundingObject Box {
+                      size 0.001 0.001 0.001
+                    }
+                    physics USE FOOT_PHYSICS
+                  }
+                }
+              ]
+              name "hip3"
+              boundingObject USE KNEE_TRANS
+              physics USE FEMUR_PHYSICS
+            }
+          }
+        ]
+        name "spine"
+        boundingObject USE PELVIS_BOX_SHAPE
+        physics Physics {
+          density -1
+          mass 4
+          centerOfMass [
+            -0.13 0 0
+          ]
+          inertiaMatrix [
+            0.016667 0.016667 0.026667
+            0 0 0
+          ]
+        }
+      }
+    }
+  ]
+  name "GhostDog"
+  boundingObject USE BODY_SHAPE
+  physics Physics {
+    density 700
+    centerOfMass [
+      0 0 0.02
+    ]
+  }
+  controller "ghostdog_walk"
+}
