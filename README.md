@@ -12,13 +12,13 @@
 ## 🎥 Project Demo
 
 https://github.com/user-attachments/assets/bb1d13ec-8491-4536-990c-ef4c5ca195e6
-```
-![BalanceBot Demo](assets/demo.gif)
+
 ```
 
-*BalanceBot navigating a circular arena with dynamic stability compensation*
 
----
+
+
+
 
 ## 📖 Overview
 
